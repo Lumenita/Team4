@@ -6,7 +6,7 @@ window.onload = function() {
     chatList = document.querySelector('.chatlist'),
     animateBotBubble = document.querySelectorAll('.bot__input--animation'),
     animationCounter = 1,
-    previousInput,
+    previousInput;
 
     //Event Listeners
     sendForm.onkeydown = function (ev) {

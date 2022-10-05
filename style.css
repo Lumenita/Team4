@@ -16,6 +16,7 @@ body {
     display: flex;
     justify-content: center;
     font-size: 2rem;
+    margin: 0 0 0.5em 0;
 }
 /*
 * Main
@@ -53,13 +54,13 @@ body {
     background-color: #363636;
 }
 
-.chatbot__overview {
+.chatHistory {
     background-color: #363636;
     display: flex;
     flex-flow: row nowrap;
     align-content: space-between;
-    min-height: 80vh;
-    max-height: 80vh;
+    min-height: 84vh;
+    max-height: 84vh;
     margin: 0 auto;
     padding: 1em;
     padding-bottom: 0;
