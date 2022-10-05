@@ -3,7 +3,6 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 1em;
- 
     line-height: 1.45;
     background-color: #363636;
 }
@@ -11,61 +10,48 @@ body {
 * Header
 */
 .title {
-    min-height: 3vh;
-    max-height: 3vh;
+    min-height: 3%;
+    max-height: 3%;
     display: flex;
     justify-content: center;
     font-size: 2rem;
     margin: 0 0 0.5em 0;
 }
 /*
-* Main
+* Body
 */
-
 .mainPage {
     flex-flow: row nowrap;
     align-content: space-between;
     background-color: #6e6e6e;
-
-    min-width: 45vw;
-    max-width: 45vw;
-    min-height: 96vh;
-    max-height: 96vh;
-    margin: 0 auto;
-  
-    padding: 1em;
+    width: 45%;
+    height: 100%;
+    margin: 0 auto;  
+    padding: 1%;
     padding-bottom: 0;
 }
-
-
 *, *:before, *:after {
 	box-sizing: border-box;
 }
-
 body {
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    font-size: 16px;
     font-size: 1em;
-    -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     line-height: 1.45;
     background-color: #363636;
 }
-
 .chatHistory {
     background-color: #363636;
     display: flex;
     flex-flow: row nowrap;
     align-content: space-between;
-    min-height: 84vh;
-    max-height: 84vh;
+    height: 89%;
     margin: 0 auto;
     padding: 1em;
     padding-bottom: 0;
 }
-
 .chatList {
     font-family: inherit;
     font-size: 1em;
@@ -74,10 +60,9 @@ body {
     align-items: flex-end;
     overflow-x: hidden;
     width: 100%;
-    max-height: 85vh;
+    max-height: 98%;
     margin: 0 auto;
 }
-
 .chatList .userInput,
 .chatList .botOutput {
     padding: 0.85em;
@@ -87,7 +72,6 @@ body {
     border-radius: 5px;
     border-bottom: 1px solid #777;
 }
-
 .chatList .userInput {
     box-shadow: 1px 1px 2px #666;
     border-top: 4px solid #cc8914;
@@ -98,7 +82,6 @@ body {
     animation-play-state: running;
     animation-fill-mode: forwards;
 }
-
 .chatList .botOutput {
     align-self: flex-start;
     box-shadow: -1px 1px 2px #666;
@@ -112,50 +95,40 @@ body {
     animation-play-state: paused;
     animation-fill-mode: forwards;
 }
-
 .chatList .botOutput:last-child {
     display: none;
 }
-
 .chatList .bot__command {
     color: #f5f5f5;
     color: #27ae60;
     font-weight: 600;
     padding: 0.1em;
 }
-
 .chatList .botOutput:nth-child(1) {
     animation-delay: 600ms;
     animation-play-state: running;
 }
-
 .chatList .botOutput:nth-child(2) {
     animation-delay: 1200ms;
     animation-play-state: running;
 }
-
 .chatList .botOutput:nth-child(3) {
     animation-delay: 1800ms;
     animation-play-state: running;
 }
-
 .chatList .botOutput--standard:last-child {
     display: block;
 }
-
 .chatList .botOutput--failed {
     display: block !important;
 }
-
 .chatList .botOutput--second-sentence {
     display: block;
 }
-
 .chatList .botOutputImage {
     max-width: 16em;
     height: 12em;
 }
-
 @keyframes animateBubble {
     0% {
         transform: translateY(-20%);
@@ -168,33 +141,23 @@ body {
     }
 }
 
-.block--background {
-    background-color: #363636;
-    width: 100vw;
-    height: 100vh;
-}
-
 #chatform {
     display: flex;
     justify-content: center;
     width: 80%;
     margin: 0 auto;
-    padding-top: 1em;
-    font-size: 1em;
+
+    font-size: 12pt;
     font-family: Helvetica;
 }
 
-@media screen and (max-width: 29em) {
-    #chatform {
-        width: 90%;
-    }
-}
-
-.chatbox-area {
+.chatboxArea {
     margin: 0 auto;
     position: relative;
+    display: flex;
     bottom: 0;
     height: auto;
+    padding: 0.5% 0 0.5% 0;
     width: 100%;
 }
 
@@ -202,10 +165,10 @@ textarea[name="chatbox"] {
     resize: none;
     border: 2px solid #27ae60;
     border-right: 0;
-    width: 70%;
+    width: 80%;
     background-color: transparent;
     color: #fff;
-    height: 3em;
+    height: 75%;
     margin: 0;
     padding: 0.75em;
     border-radius: 8px 0px 0px 8px;
@@ -224,6 +187,7 @@ textarea[name="chatbox"]:focus {
 
 input[type="submit"] {
     -webkit-appearance: none;
+    height: 75%;
     appearance: none;
     border: 0;
     width: 15%;
@@ -234,7 +198,7 @@ input[type="submit"] {
     border-left: 0;
     border-radius: 0 8px 8px 0;
     font-family: inherit;
-    font-size: 1em;
+    font-size: 16pt;
     transition: 200ms all ease-in;
 }
 input[type="calc"]:hover,
@@ -274,7 +238,7 @@ input[type="submit"]:hover {
 }
 
 .calculator {
-    width: 5vw;
+    width: 15%;
     height: 4vh;
     background-color: white;
     align-items: center;
@@ -282,5 +246,4 @@ input[type="submit"]:hover {
     display: flex;
     font-size: 1.2em;
     border-radius: 8px 8px 8px 8px;
-    margin: -50px 0 0 0;
 }
