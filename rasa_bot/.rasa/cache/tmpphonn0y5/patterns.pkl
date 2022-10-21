@@ -1,0 +1,6 @@
+[
+  {
+    "name": "definition",
+    "pattern": "(\\bBig\\ O\\ Notation\\b|\\bdijkstra's\\ algorithm\\b|\\bfloyd's\\ marshall\\b|\\bStack\\b)"
+  }
+]
