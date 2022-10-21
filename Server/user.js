@@ -5,17 +5,19 @@ const express = require("express")
 const router = express.Router()
 
 //stores all users 
-let users = [];
+let users = []
+
 router.get("/new", (req, res) => {
     //creates new user id
     const { v4: uuidv4 } = require('uuid');
-    let userobj = {"users": [uuidv4()]}
-    if(!users.includes(uuidv4))
-    users.push(uuidv4())
+    const newID = uuidv4()
+    let userobj = {"users": [newID]}
+    if(!users.includes(newID))
+    users.push(newID)
 
-    let userID = JSON.stringify(uuidv4())
+    let userID = JSON.stringify(newID)
     res.json(userobj)
-
+    console.log(newID)
     console.log(users)
     
 
@@ -24,26 +26,34 @@ router.get("/new", (req, res) => {
  router.route("/:id").get((req, res) => {
      res.send(`get user with ID ${req.params.id}`)
 
+//When posted 
 }).post((req, res) => {
-    console.log(req.body)
-    let config = {
-        headers: {
-           
+    if(users.includes(req.params.id))
+    {
+        console.log(req.body)
+        let config = {
+            headers: {
+               
+            }
         }
+        let data = req.body
+    
+        let botData
+        axios.post('http://localhost:5005/webhooks/rest/webhook', data,config)
+      .then(function (response) {
+            botData = response.data
+            res.send(botData)
+            console.log(botData)
+      })
     }
-    let data = {
-        "sender": "test_user",  
-        "message": "hello"
+    else
+    {
+        res.status(404).send("user not found")
+        
     }
+  
 
-    let botData
-    axios.post('http://localhost:5005/webhooks/rest/webhook', data,config)
-  .then(function (response) {
-        botData = response.data
-        res.send(botData)
-  })
-
-
+//deletes user when requested
 }).delete((req, res) => {
         if(users.includes(req.params.id))
         {
