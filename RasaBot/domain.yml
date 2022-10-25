@@ -1,34 +1,29 @@
-version: "3.0"
+version: "2.0"
 
 intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
+  - ask_loc
+  - ask_prof_name
+  - ask_office_hrs
+  - ask_due_dates
+ 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
+  - utter_loc:
+    - text: "the class is online"
 
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+  - utter_prof_name:
+    - text: "Dr. Miguel Razo"
 
-  utter_did_that_help:
-  - text: "Did that help you?"
+  - utter_office_hrs:
+    - text: " Prof. Razo - ECSS 3.605, Tue & Thu 10:00 AM - 11:00 PM"
 
-  utter_happy:
-  - text: "Great, carry on!"
+  - utter_due_dates:
+    - text: "Final report is due Dec 9 and oral presentaion is due on Dec 10 from 9 am to 1 pm"
 
-  utter_goodbye:
-  - text: "Bye"
+  - utter_big_O:
+    - text: "Please refer to the following web page:"
+    - image: "https::https://www.bigocheatsheet.com/"
 
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - utter_data_struct
+    - text: "Please refer to the following web page:"
+    - image: "https://www.interviewcake.com/concept/python/array?"
 
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true

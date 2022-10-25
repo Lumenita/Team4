@@ -1,0 +1,33 @@
+version: "2.0"
+
+stories:
+
+- story: location path
+  steps:
+    - intent: ask_loc
+    - action: utter_ask_loc
+
+- story: professor path
+  steps:
+    - intent: ask_prof_name
+    - action: utter_prof_name
+
+- story: office path
+  steps:
+    - intent: ask_office_hrs
+    - action: utter_office_hrs
+
+- story: due_date path
+  steps:
+    - intent: ask_due_dates
+    - action: utter_due_dates
+
+- story: big_O path
+  steps:
+    - intent: ask_big_O
+    - action: utter_big_O
+
+- story: data_struc path
+  steps:
+    - intent: ask_data_struct
+    - action: utter_data_struct 
