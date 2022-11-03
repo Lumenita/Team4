@@ -53,47 +53,43 @@ import './components/Style.css';
     //  <p>{userID.users}</p>
     // </div>
 
-<body>
-    <div class="mainPage"> 
+    <body>
+      <div>
 
-        <div class="title">
+        <div class="mainPage">
+          <div class="title">
             <span> Team 4 Chat Bot </span>
-        </div>
+          </div>
 
-        <div class="chatHistory">
+          <div class="chatHistory">
             <ul class="chatList">
-                <li class="botOutput botOutput--standard">Hello, I am chatbot 4</li>
-                <li class="botOutput botOutput--standard">I can help</li>
-                <li class="botOutput botOutput--standard">
-                
-
-                    <span class="botOutput--second-sentence">You can ask me anything</span>
-                    <ul>
-                        <li class="input__nested-list">User ID: {userID.users}</li>
-                    </ul>
-                </li>
+              <li class="botOutput botOutput--standard">Hello, I am chatbot 4</li>
+              <li class="botOutput botOutput--standard">I can help</li>
+              <li class="botOutput botOutput--standard">
+                <span class="botOutput--second-sentence">You can ask me anything</span>
+                <ul>
+                  <li class="input__nested-list">User ID: {userID.users}</li>
+                </ul>
+              </li>
             </ul>
-        </div>
+          </div>
 
-        <div class="chatboxArea">
-
+          <div class="chatboxArea">
             <div class="calculator">
-                <a href="https://www.desmos.com/scientific">Calculator</a>
+              <a href="https://www.desmos.com/scientific">Calculator</a>
             </div>
 
             <div>
               <form action="" id="chatform" onSubmit={handleSubmit}>
-                <textarea placeholder="..." class="chatbox" name="chatbox" onChange={event => setText(event.target.value)}  minLength = "2"  style ={{resize:"none"}}></textarea>
-                <input class="submit-button" type="submit" value = "send"    style ={{resize:"none"}}/> 
+                <textarea placeholder="..." class="chatbox" name="chatbox" onChange={event => setText(event.target.value)} minLength="2" style={{ resize: "none" }}></textarea>
+                <input class="submit-button" type="submit" value="send" style={{ resize: "none" }} />
               </form>
-             </div>
-
+            </div>
+          </div>
         </div>
 
-
-
-    </div>
-</body>
+      </div>
+    </body>
    
   )
 }
