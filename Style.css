@@ -33,6 +33,7 @@ body > div {
     height: 100%;
     margin: auto;  
     padding: 1%;
+    overflow-x: hidden;
 }
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -47,6 +48,7 @@ body > div {
     font-size: 2rem;
     margin: 0 0 0.5em 0;
     color: #ffffff;
+    height: 4%;
 }
 
 /*
@@ -58,7 +60,7 @@ ul {
 }
 .chatHistory {
     background-color: #c0dbed;
-    height: 89%;
+    height: 88%;
 }
 .chatList {
     display: flex;
@@ -155,7 +157,7 @@ ul {
     position: relative;
     display: flex;
     bottom: 0;
-    height: auto;
+    height: 6%;
     padding: 0.5% 0 0.5% 0;
     width: 100%;
     
@@ -184,7 +186,8 @@ textarea[name="chatbox"] {
     border-radius: 8px 0px 0px 8px;
     font-family: inherit;
     font-size: 1em;
-    
+    overflow: hidden;
+    position: static;
 }
 textarea[name="chatbox"]:focus {
     outline: none;
