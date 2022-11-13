@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react'
 import ChatBubble from './components/ChatBubble'
 import axios from 'axios';
+import Latex from 'react-latex-next'
 
 import './components/Style.css';
 
@@ -54,7 +55,6 @@ import './components/Style.css';
     // </div>
 
     <body>
-      <div>
 
         <div class="mainPage">
           <div class="title">
@@ -74,11 +74,20 @@ import './components/Style.css';
             </ul>
           </div>
 
-          <div class="chatboxArea">
-            <div class="calculator">
-              <a href="https://www.desmos.com/scientific">Calculator</a>
-            </div>
+          <div class="calculator">
+                <button class="calcButton calc1"> omega </button>
+                <button class="calcButton calc2"> theta </button>
+                <button class="calcButton calc3"> 3 </button>
+                <button class="calcButton calc4"> 4 </button>
+                <button class="calcButton calc5"> 5 </button>
+                <button class="calcButton calc6"> 6 </button>
+                <button class="calcButton calc7"> 7 </button>
+                <button class="calcButton calc8"> 8 </button>
+                <button class="calcButton calc9"> 9 </button>
+                <button class="calcButton calc10"> 10 </button>
+          </div>
 
+          <div class="chatboxArea">
             <div>
               <form action="" id="chatform" onSubmit={handleSubmit}>
                 <textarea placeholder="..." class="chatbox" name="chatbox" onChange={event => setText(event.target.value)} minLength="2" style={{ resize: "none" }}></textarea>
@@ -88,7 +97,6 @@ import './components/Style.css';
           </div>
         </div>
 
-      </div>
     </body>
    
   )
