@@ -1,0 +1,66 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: ask TA
+  steps:
+  - intent: ask_TAinformation
+  - action: utter_TA_Info
+- story: ask faster Algorithm
+  steps:
+  - intent: ask_algo
+  - action: sortAlgo
+
+- story: ask algorithm
+  steps:
+  - intent: ask_algo_faster
+  - action: compareAlgo
+
+- story: best time
+  steps:
+  - intent: best_time
+  - action: algoBigOmega
+
+- story: best time
+  steps:
+  - intent: worst_time
+  - action: algoBigO
+- story: best time
+  steps:
+  - intent: average_time
+  - action: algoBigTheta
+- story: ask time
+  steps:
+  - intent: ask_time
+  - action: run_time
+- story: calc
+  steps:
+  - intent: calculator
+  - action: calc
