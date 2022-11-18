@@ -13,7 +13,7 @@ body > div {
     font-weight: 400;
     font-size: 1em;
     line-height: 1.45;
-    background: linear-gradient(-45deg, #d78909, #dca901,#16a784, #0a7764);
+    background: linear-gradient(-45deg, #0a7764, #16a784, #dca901, #d78909, #dca901,#16a784, #0a7764);
 }
 .mainPage {
     background-color: #000028;
@@ -172,7 +172,7 @@ ul {
     font-size: 12pt;
     font-family: Helvetica;
 }
-textarea[name="chatbox"] {
+input[name="chatbox"] {
     resize: none;
     border: 2px solid #27ae60;
     border-right: 0;
@@ -184,11 +184,11 @@ textarea[name="chatbox"] {
     padding: 0.75em;
     border-radius: 8px 0px 0px 8px;
     font-family: inherit;
-    font-size: 1em;
+    font-size: 1.2em;
     overflow: hidden;
     position: static;
 }
-textarea[name="chatbox"]:focus {
+input[name="chatbox"]:focus {
     outline: none;
     border: 2px solid #4bd786;
 }
