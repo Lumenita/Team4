@@ -1,0 +1,271 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: ask_TAinformation
+  examples: |
+    - What is the email of the TA?
+    - How do I contact the TA
+    - Email for TA
+- intent: ask_Definition
+  examples: |
+   - What is the definition of [Big O Notation](definition)
+   - What is [Dijkstra's Algorithm](definition)
+   - What is [Hash function](definition)
+   - What is [Non-deterministic](definition)
+   - What is [Pigeonhole Principle](definition)?
+   - Do you know what [Queue](definition) a is?
+   - What is (definition)
+   - [Height](definition)
+- lookup: definition
+  examples: |
+   - Big O Notation
+   - Dijkstra's Algorithm
+   - Queue
+   - Binary Tree
+   - Greedy Algorithm
+   - Dynamic Programming
+   - Algorithm
+   - Automata
+   - Directed Graph
+   - Recursion
+   - Finite Automata
+   - Graph
+   - Hash function
+   - Height
+   - Heuristic algorithm
+   - Incident
+   - Indexing
+   - Inherit
+   - Leaf Node
+   - Neighbor
+   - Node
+   - Non-deterministic
+   - Postorder traversal
+   - Preorder traversal
+   - Disjoint
+   - Weight
+   - Vertex
+   - Upper Bound
+   - Halting Problem
+   - LIFO
+   - Lower Bound
+   - Max Heap
+   - Min Heap
+   - Parent
+   - Pigeonhole Principle
+   - Radix sort
+   - Sibling
+   - Stack
+   - Theta Notation
+   - Traversal
+   - Tree
+   - Inorder Traversal
+   - Turing Machine
+   - Undirected Graph
+   - Vector
+   - Weighted Graph
+   - Worst case
+   - Array
+   - AVL Tree
+   - BD-tree
+   - Binary Search Tree
+   - Breadth-First Search
+   - Bubble Sort
+   - Bucket Sort
+   - Depth-First Search
+   - Forest
+   - Euclidean Traveling Salesman Problem
+   - Dining Philosophers
+   - Heap
+   - Heapsort
+   - Munkres' Assignment Algorithm
+   - J Sort
+   - In-Place Sort
+   - Insertion Sort
+   - Quicksort
+   - Linear Probing Sort
+   - Towers of Hanoi
+   - Time-Space Complexity
+   - Splay Tree
+   - Spanning Tree
+   - Smith-Waterman Algorithm
+   - Simple Path
+   - Hamiltonian Path
+   - Sieve of Eratosthenes
+   - Shuffle Short
+   - Distribution Sort
+   - Merge Sort
+   - Divide and Conquer
+   - Selection Sort
+   - Run Time
+   - Polynomial Time
+   - Root
+   - Left Rotation
+   - Right Rotation
+   - Red-Black Tree
+   - Range Sort
+   - Rapid Sort
+   - Prim-Jarnik Algorithm
+   - Trie
+   - Patricia Tree
+   - NP
+   - Mealy Machine
+   - Moore Machine
+   - Markov Chain
+   - Manhattan Distance
+   - Master Theorem
+   
+- intent: ask_algo
+  examples: |
+   - Which Big O is faster
+   - Which is faster 
+   - Compare 
+   - Which run time is faster
+
+- intent: ask_time
+  examples: |
+   - What is the run time of [Merge Sort](algo)
+   - What is the run time of (algo)
+   - run time of [Shell Sort](algo)
+   - runtime of [Tree Sort](algo)
+
+- intent: best_time
+  examples: |
+   - Whats the best running time of [Merge Sort](algo)
+   - Whats the best running time of [Heap Sort](algo)
+   - Whats the best running time of [Selection Sort](algo)
+   - Best run time of [Shell Sort](algo)
+   - Best run time of [Quick Sort](algo)
+   - Best run time of [Bubble Sort](algo)
+- intent: worst_time
+  examples: |
+   - Whats the worst running time of [Merge Sort](algo)
+   - Whats the worst running time of [Heap Sort](algo)
+   - Whats the worst running time of [Selection Sort](algo)
+   - Worst run time of [Shell Sort](algo)
+   - Worst run time of [Quick Sort](algo)
+   - Worst run time of [Bubble Sort](algo)
+- intent: average_time
+  examples: |
+   - Whats the average running time of [Merge Sort](algo)
+   - Whats the average running time of [Heap Sort](algo)
+   - Whats the average running time of [Selection Sort](algo)
+   - Average run time of [Shell Sort](algo)
+   - Average run time of [Quick Sort](algo)
+   - Average run time of [Bubble Sort](algo)
+
+- intent: ask_algo_faster
+  examples: |
+   - Which algorithm is faster [Selection Sort](algo) or [Bubble Sort](algo)
+   - Which algorithm is faster [Heap Sort](algo) or [Cube Sort](algo)
+   - Which algorithm is faster [Selection Sort](algo) or [Bubble Sort](algo)
+   - Which algorithm is faster [Counting Sort](algo) or [Tree Sort](algo)
+   - Which is faster [Quick Sort](algo) or [Merge Sort](algo)
+   - Which is faster [Shell Sort](algo) or [Tim Sort](algo)
+- lookup: algo
+  examples: |
+   - Quick Sort
+   - Merge Sort
+   - Tim Sort
+   - Heap Sort
+   - Bubble Sort
+   - Selection Sort
+   - Tree Sort
+   - Shell Sort
+   - Radix Sort
+   - Bucket Sort
+   - Counting Sort
+   - Cube Sort
+- intent: calculator
+  examples: |
+   - |MATH|
+   - |MATH| integration() 
+   - |MATH| eval() 

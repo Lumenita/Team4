@@ -1,0 +1,108 @@
+
+    [
+        {
+            "name": "Quick Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n^2)",
+            "speed": "3"
+        },
+        {
+            "name": "Merge Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "1"
+        },
+        {
+            "name": "Merge Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "1"
+        },
+        {
+            "name": "Tim Sort",
+            "best": "Ω(n)",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "1"
+        },
+        {
+            "name": "Heap Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "1"
+        },
+        {
+            "name": "Heap Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "1"
+        },
+        {
+            "name": "Bubble Sort",
+            "best": "Ω(n)",
+            "average": "Θ(n^2)",
+            "worst": "O(n^2)",
+            "speed": "2"
+        },
+        {
+            "name": "Insertion Sort",
+            "best": "Ω(n)",
+            "average": "Θ(n^2)",
+            "worst": "O(n^2)",
+            "speed": "2"
+        },
+        {
+            "name": "Selection Sort",
+            "best": "Ω(n^2)",
+            "average": "Θ(n^2)",
+            "worst": "O(n^2)",
+            "speed": "2"
+        },
+        {
+            "name": "Tree Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n log(n))",
+            "worst": "O(n^2)",
+            "speed": "2"
+        },
+        {
+            "name": "Shell Sort",
+            "best": "Ω(n log(n))",
+            "average": "Θ(n(log(n))^2)",
+            "worst": "O(n(log(n))^2)",
+            "speed": "4"
+        },
+        {
+            "name": "Bucket Sort",
+            "best": "Ω(n+k)",
+            "average": "Θ(n+k)",
+            "worst": "O(n^2)",
+            "speed": "3"
+        },
+        {
+            "name": "Radix Sort",
+            "best": "Ω(nk)",
+            "average": "Θ(nk)",
+            "worst": "O(nk)",
+            "speed": "1"
+        },
+        {
+            "name": "Counting Sort",
+            "best": "Ω(n+k)",
+            "average": "Θ(n+k)",
+            "worst": "O(n+k)",
+            "speed": "0"
+        },
+        {
+            "name": "Cube Sort",
+            "best": "Ω(n)",
+            "average": "Θ(n log(n))",
+            "worst": "O(n log(n))",
+            "speed": "2"
+        }
+    ]        
