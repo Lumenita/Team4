@@ -5,10 +5,6 @@
 # https://rasa.com/docs/rasa/custom-actions
 
 
-# This is a simple example for a custom action which utters "Hello World!"
-
-# 
-#
 from sympy import *
 import string
 from pymongo import MongoClient
@@ -20,28 +16,44 @@ from rasa_sdk import *
 x, y, z, n = symbols("x y z n")
 
 
+# These next 7functions are for calculator action
+
+# will solve sumation value
 def summation(arg):
+
+    # arg will be formated (symbol), (start), (end)
+    # splits by comma and creates array
     func = arg.split(',')
     n_start = int(func[1])
     n_end = int(func[2])
+
+    #converts into sympy notation and simplify function
     expr = sympify(func[0])
     result = Sum(expr, (n, n_start, n_end)).doit()
     
     return "$ {} = {} $".format(latex(Sum(expr, (n, n_start, n_end))), latex(result))
 
-
+#solves 
 def big_pi(arg):
+    # arg will be formated (symbol), (start), (end)
+    # splits by comma and creates array
     func = arg.split(',')
     n_start = int(func[1])
     n_end = int(func[2])
+
+    #converts into sympy notation and simplify function
     expr = sympify(func[0])
     result = Product(expr, (n, n_start, n_end)).doit()
     
     return "$ {} = {} $".format(latex(Product(expr, (n, n_start, n_end))), latex(result))
 
 def integration(arg):
+    # arg will be formated (symbol), (start), (end)
+    # splits by comma and creates array
     func = arg.split(',')
     start = int(func[1])
+
+    # infinity is used, converts it to oo value
     if func[2].__contains__('oo'):
         end = oo
     else:
@@ -53,24 +65,27 @@ def integration(arg):
     return f'$ {LHS} = {result} $'
 
 
-
+# solvable equations
 def evaluate(func):
     expr = sympify(func, evaluate=False)
     result = expr.evalf()
     return "$ {} = {} $".format(latex(expr), latex(result))
 
+# solvable equations
 def solver(func):
     expr = sympify(func)
     result = solve(expr)
     
     return "$ {} = {} $".format(latex(expr), latex(result))
 
+# find deriavtive 
 def differentiation(func):
     expr = sympify(func)
     result = Derivative(expr).doit()
     
     return "$ {} = {} $".format(latex(Derivative(expr)), latex(result))
 
+# solves for unsolvable symbols
 def indef_integral(func):
     expr = sympify(func)
     LHS = latex(Integral(expr, x))
@@ -81,19 +96,15 @@ def indef_integral(func):
 
 
 
-# class TA_Info(Action):
 
-#     def name(self) -> Text:
-#         return "TA_Info"
 
-#     def run(self, dispatcher: CollectingDispatcher,
-#             tracker: Tracker,
-#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+##################################################################################################################
+# This next area defines actions in rasa                                                                         #
+# For function name, it will define the name of the explicit action denoted in the rules and domain              #
+# For function run, this is the logic of the function, any text outputed by the bot will use dispatcher function #
+##################################################################################################################
 
-#         dispatcher.utter_message(text="The email for TA is akshay.jha@utdallas.edu")
-
-#         return []
-
+# When action called, will return a set value
 class TA_Info(Action):
 
     def name(self) -> Text:
@@ -107,15 +118,8 @@ class TA_Info(Action):
 
         return []
 
-testDefinitions_DB = {
-    "Big O Notation": "We use O-notation to give an upper bound on a function, The O-notation asymptotically bounds a function from above and below.",
-    "Dijkstra's Algorithm":  "Generates a SPT (shortest path tree) with a given source as a root. Maintain two sets, one set contains vertices included in the shortest-path tree, other set includes vertices not yet included in the shortest-path tree. At every step of the algorithm, find a vertex that is in the other set (set not yet included) and has a minimum distance from the source.",
-    "Stack": "A stack is a linear data structure that follows the principle of Last In First Out (LIFO). This means the last element inserted inside the stack is removed first.",
-    "Queue": "A queue is considered FIFO (First In First Out) to demonstrate the way it accesses data. This means that once a new element is added, all elements that were added before have to be removed before the new element can be removed.",
-    "Binary Tree": "Binary Tree is defined as a Tree data structure with at most 2 children",
-    "Greedy Algorithm": "A greedy algorithm is a type of algorithm always makes the choice that looks best at the moment.",
-    "Dynamic Programming": "Dynamic programming is like the divide-and-conquer method, solves problems by combining the solutions to subproblems."
-}
+# This action when a user ask for a definition. This will query a database and return
+# the answer
 class returnDefinition(Action):
     def name(self) -> Text:
         return "tell_Definition"
@@ -123,21 +127,27 @@ class returnDefinition(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        
+        # connects to Mongodb database
         client = MongoClient('localhost', 27017)
         userDef = next(tracker.get_latest_entity_values("definition"), None)
         if userDef == None:
             msg = "definition not recongnized" 
             dispatcher.utter_message(text=msg)
 
+        #capitilizing words
         userDef = string.capwords(userDef)
+
+        #define database and collection
         db = client["rasa_data"]
         col =db["definitions"]
+
+        #looks for query
         myquery = {"name": userDef}
         data = col.find_one(myquery)
         
         
-
+        # returns definition
         dispatcher.utter_message(text = data["desc"])
 
         return []
@@ -151,19 +161,21 @@ class returnAlgo(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        # not looking for a specific entity so the whole message is needed
         userDef = (tracker.latest_message)['text']
         
+
         userDef = userDef.split()
-        bigO = []
+        bigO = userDef
+
+        # will remove OΩθ from the string
         for x in userDef:
             if x.find("(") == 1:
                 bigO.append(x.lstrip("OΩθ"))
         
-        
-        
-        
-        
+        # This whole next  section is used to calculate which is bigger
         x, y, z, n = symbols("x y z n")
+
         func1 = bigO[0]
         func2 = bigO[1]
         top = sympify(func1)
@@ -172,16 +184,20 @@ class returnAlgo(Action):
         result = limit(expr, n, oo)
         top = latex(top)
         bot = latex(bot)
+
+
         if (result == 0):
-            userDef = f'$ {top} = O({bot}) $'
+            userDef = f'$ O{top} > O({bot}) $'
         elif (result == oo):
-            userDef = f'$ {top} = Ω({bot}) $'
+            userDef = f'$ O{top} = O({bot}) $'
         else:
-            userDef = f'$ {top} = θ({bot}) $'
+            userDef = f'$ O{top} = O({bot}) $'
         userDef = userDef.replace("**", "^")
         dispatcher.utter_message(text = userDef)
         return[]
     
+# this is for comparing two algorithm 
+# example: Which is faster Merge Sort or Selection Sort
 class compareAlgo(Action):
     def name(self) -> Text:
         return "compareAlgo"
@@ -193,17 +209,18 @@ class compareAlgo(Action):
         
         client = MongoClient('localhost', 27017)
 
+        # looks for entities
         userDef = tracker.latest_message["entities"]
 
-    
+        # querying database for speed of each algorithm
         db = client["rasa_data"]
         col = db["sorting_algo"]
         myquery = {"name": string.capwords(userDef[0]["value"])}
-
         data = col.find_one(myquery)
         myquery = {"name": string.capwords(userDef[1]["value"])}
         data2 = col.find_one(myquery)
         
+        # returns which algorithm is faster
         if data["speed"] < data2["speed"]:
             dispatcher.utter_message(text = "{} is faster then {}".format(data["name"], data2["name"]))
         elif data["speed"] > data2["speed"]:
@@ -213,6 +230,8 @@ class compareAlgo(Action):
 
 
         return []
+    
+# These next 3 algorithms ask for run time cases of each algorithm
 class algoBigO(Action):
     def name(self) -> Text:
         return "algoBigO"
@@ -235,7 +254,6 @@ class algoBigO(Action):
 
         
         return[]
-
 class algoBigTheta(Action):
     def name(self) -> Text:
         return "algoBigTheta"
@@ -259,7 +277,6 @@ class algoBigTheta(Action):
 
         
         return[]
-
 class algoBigOmega(Action):
     def name(self) -> Text:
         return "algoBigOmega"
@@ -283,6 +300,7 @@ class algoBigOmega(Action):
 
         return[]
 
+# will ouput all runtimes
 class theRunTime(Action):
     def name(self) -> Text:
         return "run_time"
@@ -306,6 +324,7 @@ class theRunTime(Action):
 
         return[]
 
+# will calculate math queries by using the 
 class calc(Action):
     def name(self) -> Text:
         return "calc"
@@ -317,7 +336,7 @@ class calc(Action):
         userDef = (tracker.latest_message)['text']
         userDef = userDef.replace("|MATH|", "")
 
-        #summation('n', 1, 4)
+        # Decides which question is asked
         if userDef.__contains__("summation"):
             userDef = userDef.replace("summation", "")
             userDef = userDef.replace(")", "")
