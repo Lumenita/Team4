@@ -10,32 +10,38 @@ import 'katex/dist/katex.min.css'
   
   const [userID, setBackendData] = useState([{}])
   //fetching user id
+  //When user opens website run this function
   useEffect(() => {
+    //fetches from routing server
     fetch("http://localhost:5000/users/new").then(
       response => response.json()
     ).then(
       data => {
-        
+        //sets id in data
         setBackendData(data)
         console.log(data)
       }
     )
   }, [])
-
+  //for text in chat
   const [text, setText] = useState()
-  const[userConvo, setConvo] = useState([])
-  const[botConvo, setBot] = useState('')
 
+  //for querying data from back end
+  const[userConvo, setConvo] = useState([])
+
+  //for when submits a query to chat bot
   const handleSubmit = event => {
     console.log('handleSubmit ran')
+    //prevents from whole component from refreshing
     event.preventDefault()
     console.log('test submission: ', text)
-    
+    //empty header
     let config = {
       headers: {
          
       }
     }
+    //puts data in json format
     const userSubmit = {
       sender: userID.users,
       message: text
@@ -45,12 +51,14 @@ import 'katex/dist/katex.min.css'
 
   
     let newText
+    //handles post request for submit
     axios.post(`http://localhost:5000/users/${userID.users}`, userSubmit,config)
     .then(function (response) {
           console.log(response.text)
       
           newText = response.data.text
-
+          
+          //creating and adding to a list of the conversation
           const newUserConvo = [...userConvo, {chatType: "User", userinput: text}, {chatType: "Bot", userinput: newText}]
           setConvo(newUserConvo)
           
@@ -60,9 +68,13 @@ import 'katex/dist/katex.min.css'
 
      
   }
-
+  //for buttons
   const handleClick = (name) => {
     // event.preventDefault();
+
+    //when clicked, adds value of button
+    //if chat box is empty, will just set the chatbox to the value
+    //otherwise will just add to the string
     if(text !== undefined)
     setText(text + name)
     else
@@ -71,7 +83,7 @@ import 'katex/dist/katex.min.css'
   }
 
 
-  
+  //this is the main dom of the website
   return(
     // <div>
     //  <p>{userID.users}</p>
@@ -90,6 +102,8 @@ import 'katex/dist/katex.min.css'
                 <li class="botOutput botOutput--standard">User ID: {userID.users}</li>
                 <li class="botOutput botOutput--standard">To do math function use |MATH| flair</li>
                 {userConvo.map((test) => {
+                  //This is for adding to the chatlist
+                  //checks if its a undefined variable, a user input or bot input
                   if(test.userinput !== undefined)
                     if(test.chatType === "User")
                     {
@@ -123,7 +137,7 @@ import 'katex/dist/katex.min.css'
             </ul>
             
         </div>
-        {/* <ChatBubble dataFromParent = {userID.users} dataFromParentTwo = {userConvo}/> */}
+        {/* This is for buttons, when the user clicks the button, it will add the value of handleclick in the text box */}
         <div class="calculator">
           <button onClick = {() => handleClick('Ω')} class="calcButton calc1"> Ω </button>
           <button onClick = {() => handleClick('Θ')} class="calcButton calc2"> Θ </button>
