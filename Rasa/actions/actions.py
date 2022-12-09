@@ -12,7 +12,9 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk import *
-
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+from latex2sympy2 import latex2sympy, latex2latex
 x, y, z, n = symbols("x y z n")
 
 
@@ -73,7 +75,8 @@ def evaluate(func):
 
 # solvable equations
 def solver(func):
-    expr = sympify(func)
+    expr = latex2sympy(func)
+    expr = sympify(expr)
     result = solve(expr)
     
     return "$ {} = {} $".format(latex(expr), latex(result))
@@ -130,71 +133,108 @@ class returnDefinition(Action):
         
         # connects to Mongodb database
         client = MongoClient('localhost', 27017)
+        db = client["rasa_data"]
+        col = db["definitions"]
+
+        name = col.find({})
+        nameList = []
+        for x in name:
+            nameList.append(x["name"])
+
+        
+
         userDef = next(tracker.get_latest_entity_values("definition"), None)
         if userDef == None:
-            msg = "definition not recongnized" 
-            dispatcher.utter_message(text=msg)
-
+            userDef = next(tracker.get_latest_entity_values("algo"), None)
+            
+        
         #capitilizing words
-        userDef = string.capwords(userDef)
-
-        #define database and collection
-        db = client["rasa_data"]
-        col =db["definitions"]
-
-        #looks for query
-        myquery = {"name": userDef}
-        data = col.find_one(myquery)
         
-        
-        # returns definition
-        dispatcher.utter_message(text = data["desc"])
 
+        
+        if userDef != None:
+            fuzzSearch = process.extract(userDef, nameList, limit = 2)
+
+            if fuzzSearch[0][1] > 70:
+                
+
+                #looks for query
+                myquery = {"name": fuzzSearch[0][0]}
+                data = col.find_one(myquery)
+                
+                # returns definition
+                dispatcher.utter_message(text = data["desc"])
+            else:
+                dispatcher.utter_message(text = f"sorry I do not know what {userDef} is")
+        else:
+            userDef = (tracker.latest_message)['text']
+            fuzzSearch = process.extract(userDef, nameList, limit = 2)
+            if fuzzSearch[0][1] > 60:
+                
+
+                #looks for query
+                myquery = {"name": fuzzSearch[0][0]}
+                data = col.find_one(myquery)
+                
+                # returns definition
+                dispatcher.utter_message(text = data["desc"])
+            else:
+                dispatcher.utter_message(text = f"sorry I do not know what what definition you asked there may be a typo")
         return []
+
+
 
 class returnAlgo(Action):
     def name(self) -> Text:
         return "sortAlgo"
-    
+
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # not looking for a specific entity so the whole message is needed
         userDef = (tracker.latest_message)['text']
+
+        var = ""
+        if userDef.__contains__("O("):
+            var = "O"
+        elif userDef.__contains__("Θ("):
+            var = "Θ"
+        elif userDef.__contains__("Ω("):
+            var = "Ω"
         
-
         userDef = userDef.split()
-        bigO = userDef
-
-        # will remove OΩθ from the string
+        bigO = []
         for x in userDef:
             if x.find("(") == 1:
-                bigO.append(x.lstrip("OΩθ"))
-        
-        # This whole next  section is used to calculate which is bigger
-        x, y, z, n = symbols("x y z n")
+                bigO.append(x.lstrip("OΩΘ"))
 
-        func1 = bigO[0]
-        func2 = bigO[1]
+
+
+
+
+
+
+        x, y, z, n = symbols("x y z n")
+        
+        func1 = latex2sympy(bigO[0])
+        func2 =  latex2sympy(bigO[1])
         top = sympify(func1)
         bot = sympify(func2)
         expr = (top / bot)
         result = limit(expr, n, oo)
         top = latex(top)
         bot = latex(bot)
-
-
         if (result == 0):
-            userDef = f'$ O{top} > O({bot}) $'
+            userDef = f'$ {var}({top}) < {var}({bot}) $'
         elif (result == oo):
-            userDef = f'$ O{top} = O({bot}) $'
+            userDef = f'$ {var}({top}) > {var}({bot}) $'
         else:
-            userDef = f'$ O{top} = O({bot}) $'
+            userDef = f'$ {var}({top}) = {var}({bot}) $'
         userDef = userDef.replace("**", "^")
         dispatcher.utter_message(text = userDef)
         return[]
+
     
 # this is for comparing two algorithm 
 # example: Which is faster Merge Sort or Selection Sort
@@ -241,17 +281,39 @@ class algoBigO(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         client = MongoClient('localhost', 27017)
-        userDef = next(tracker.get_latest_entity_values("algo"), None)
-
-        
         db = client["rasa_data"]
         col = db["sorting_algo"]
-        myquery = {"name": string.capwords(userDef)}
 
-        data = col.find_one(myquery)
-        
-        dispatcher.utter_message(text = "Worst Running Time of {}: {}".format(data["name"], data["worst"]))
+        name = col.find({})
+        nameList = []
+        for li in name:
+            nameList.append(li["name"])
 
+
+        userDef = next(tracker.get_latest_entity_values("algo"), None)
+
+        if(userDef != None):
+
+            myquery = {"name": string.capwords(userDef)}
+
+            data = col.find_one(myquery)
+
+            dispatcher.utter_message(text = "Worst Running Time of {}: {}".format(data["name"], data["worst"]))
+        else:
+            userDef = (tracker.latest_message)['text']
+            fuzzSearch = process.extract(userDef, nameList, limit = 2)
+            if fuzzSearch[0][1] > 60:
+                
+
+                #looks for query
+                myquery = {"name": fuzzSearch[0][0]}
+                data = col.find_one(myquery)
+                
+                # returns definition
+                dispatcher.utter_message(text = "Worst Running Time of {}: {}".format(data["name"], data["worst"]))
+            else:
+                dispatcher.utter_message(text = "sorry I do not know what you asked, maybe you meant {}".format(data["name"]))
+              
         
         return[]
 class algoBigTheta(Action):
@@ -355,6 +417,7 @@ class calc(Action):
 
         elif userDef.__contains__("solver"):
             userDef = userDef.replace("solver", "")
+            userDef = userDef.replace("$", "")
             dispatcher.utter_message(text = solver(userDef))
 
         elif userDef.__contains__("differentiation"):
