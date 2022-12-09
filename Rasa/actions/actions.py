@@ -4,7 +4,6 @@
 # See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 
-
 from sympy import *
 import string
 from pymongo import MongoClient
@@ -208,12 +207,6 @@ class returnAlgo(Action):
         for x in userDef:
             if x.find("(") == 1:
                 bigO.append(x.lstrip("OΩΘ"))
-
-
-
-
-
-
 
         x, y, z, n = symbols("x y z n")
         
