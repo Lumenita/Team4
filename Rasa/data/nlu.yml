@@ -333,6 +333,7 @@ nlu:
    - Which algorithm is faster [counting Sort](algo) or [tree Sort](algo)
    - Which is faster [quick Sort](algo) or [merge Sort](algo)
    - Which is faster [shell Sort](algo) or [tim Sort](algo)
+
 - lookup: algo
   examples: |
    - Quick Sort
