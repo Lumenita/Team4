@@ -89,11 +89,13 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
 - intent: ask_TAinformation
   examples: |
     - What is the email of the TA?
     - How do I contact the TA
     - Email for TA
+
 - intent: ask_Definition
   examples: |
    - What is the definition of [Big O Notation](definition)
@@ -104,6 +106,7 @@ nlu:
    - Do you know what [Queue](definition) a is?
    - What is (definition)
    - [Height](definition)
+
 - lookup: definition
   examples: |
    - Big O Notation
@@ -202,10 +205,84 @@ nlu:
    - Markov Chain
    - Manhattan Distance
    - Master Theorem
+   - Karnaugh Map
+   - Karnaugh Map
+   - Transitive Closure
+   - Topological Order
+   - Subsequence
+   - Substring
+   - Optimal Binary Search Tree
+   - Subtree
+   - Palindrome
+   - Gray Code
+   - Huffman Coding
+   - Bitonic Tours
+   - Isomorphic
+   - Euler Cycle
+   - Quick Search
+   - Bellman-Ford Algorithm
+   - Benford’s Law
+   - Memoization
+   - Maximum Flow Problem
+   - Bipartite Graph
+   - Traveling Salesman Problem
+   - Decidable Problem
+   - Undecidable Problem
+   - NP-Complete
+   - Viterbi Algorithm
+   - Sabermetrics
+   - Optimal Substructure
+   - Prefix Code
+   - Unit-Time Task
+   - Independent
+   - Cache
+   - Furthest-In-Future
+   - Amortized Analysis
+   - Aggregate Analysis
+   - Amortized Cost
+   - Accounting Method
+   - Load Factor
+   - Table Contraction
+   - Structural Modifications
+   - Self-Organizing List
+   - Persistent
+   - Dynamic Sets
+   - Cache
+   - Furthest-In-Future
+   - Amortized Analysis
+   - Aggregate Analysis
+   - Amortized Cost
+   - Accounting Method
+   - Load Factor
+   - Table Contraction
+   - Structural Modifications
+   - Self-Organizing List
+   - Persistent
+   - Dynamic Sets
+   - Competitive Analysis
+   - Al[ha Balance
+   - Primary Memory
+   - Secondary Storage
+   - Platter
+   - Mergeable Heap
+   - Mergeable Max Heap
+   - Mergeable Min Heap
+   - Fibonacci Heap
+   - Child List
+   - Minimum Node
+   - Critical Path
+   - Incidence matrix
+   - Linear Programming
+   - Feasibility Problem
+   - Constraint Graph
+   - Predecessor subgraph
+   - Edmonds Karp Algorithm
+   - Augmenting Path
    
 - intent: ask_algo
   examples: |
-   - Which Big O is faster
+   - Which Big O is faster O(n) or O(n^2)
+   - Which Big O is faster O(n) or O(n^2)
    - Which is faster 
    - Compare 
    - Which run time is faster
@@ -244,12 +321,18 @@ nlu:
 
 - intent: ask_algo_faster
   examples: |
-   - Which algorithm is faster [Selection Sort](algo) or [Bubble Sort](algo)
+   - Which algorithm is faster [Seection Sort](algo) or [Bubble Sort](algo)
    - Which algorithm is faster [Heap Sort](algo) or [Cube Sort](algo)
    - Which algorithm is faster [Selection Sort](algo) or [Bubble Sort](algo)
    - Which algorithm is faster [Counting Sort](algo) or [Tree Sort](algo)
    - Which is faster [Quick Sort](algo) or [Merge Sort](algo)
    - Which is faster [Shell Sort](algo) or [Tim Sort](algo)
+   - Which algorithm is faster [selection sort](algo) or [bubble Sort](algo)
+   - Which algorithm is faster [heap sort](algo) or [Cube Sort](algo)
+   - Which algorithm is faster [selection Sort](algo) or [bubble Sort](algo)
+   - Which algorithm is faster [counting Sort](algo) or [tree Sort](algo)
+   - Which is faster [quick Sort](algo) or [merge Sort](algo)
+   - Which is faster [shell Sort](algo) or [tim Sort](algo)
 - lookup: algo
   examples: |
    - Quick Sort
@@ -269,3 +352,5 @@ nlu:
    - |MATH|
    - |MATH| integration() 
    - |MATH| eval() 
+   - |MATH| summation(n,1,2)
+   - |MATH| differentiation(x^2)
