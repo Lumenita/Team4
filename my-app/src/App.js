@@ -25,7 +25,7 @@ import 'katex/dist/katex.min.css'
   }, [])
   //for text in chat
   const [text, setText] = useState()
-
+  const [cursor, setCursor] = useState()
   //for querying data from back end
   const[userConvo, setConvo] = useState([])
 
@@ -69,14 +69,18 @@ import 'katex/dist/katex.min.css'
      
   }
   //for buttons
-  const handleClick = (name) => {
+  const handleClick = (name, event) => {
     // event.preventDefault();
 
     //when clicked, adds value of button
     //if chat box is empty, will just set the chatbox to the value
     //otherwise will just add to the string
+      let cursorPosition = cursor
+      let textBeforeCursorPosition = text.substring(0, cursorPosition)
+      let textAfterCursorPosition = text.substring(cursorPosition, text.length)
+    
     if(text !== undefined)
-    setText(text + name)
+    setText(textBeforeCursorPosition + name + textAfterCursorPosition)
     else
     setText(name)
 
@@ -143,16 +147,16 @@ import 'katex/dist/katex.min.css'
           <button onClick = {() => handleClick('Θ')} class="calcButton calc2"> Θ </button>
           <button onClick = {() => handleClick('big_pi(func, lower, uper)')} class="calcButton calc3"> Π </button>
           <button onClick = {() => handleClick('summation(func,lower ,upper)')} class="calcButton calc4"> Σ </button>
-          <button onClick = {() => handleClick('differentiation(function)')} class="calcButton calc5"> dx </button>
+          <button onClick = {() => handleClick('differentiation')} class="calcButton calc5"> dx </button>
           <button onClick = {() => handleClick('evaluate(Solvable Function)')} class="calcButton calc6"> eval </button>
           <button onClick = {() => handleClick('solver(function)')} class="calcButton calc7"> solve </button>
           <button onClick = {() => handleClick('integration(func, start, end)')} class="calcButton calc8"> def ∫ </button>
           <button onClick = {() => handleClick('indef_integral(function)')} class="calcButton calc9"> indef ∫ </button>
-          <button onClick = {() => handleClick('^()')} class="calcButton calc10"> exp </button>
+          <button onClick = {() => handleClick('\\log_{BASE}(function)')} class="calcButton calc10"> log </button>
         </div>
         <div class="chatboxArea">
             <form action="" id="chatform" onSubmit={handleSubmit}>
-              <input class="chatbox" name="chatbox" onChange={event => setText(event.target.value) }value = {text}></input>
+              <input class="chatbox" name="chatbox" onChange={event => {setText(event.target.value); setCursor(event.target.selectionStart)}} onClick ={event => {setCursor(event.target.selectionStart);}}value = {text}></input>
               <input class="submit-button" type="submit" value = "send"/> 
             </form>
         </div>
