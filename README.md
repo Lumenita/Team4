@@ -9,5 +9,15 @@ This project was made for CS4485 Senior Design Project so some of this readme wi
 
 The only part of the project that has not been included is the MongoDB database
 
+Questions that you can query the chat bot:
+
+ * Algorithms
+     * Ask running times of algorithm
+     * Compare two algorithms
+     * Ask the what
+ * 
+
 ## How does it work
 
+Adding
+![image](https://user-images.githubusercontent.com/87556821/206939350-692644fa-8256-4ec1-b491-eb14110a3125.png)
