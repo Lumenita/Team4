@@ -1,7 +1,10 @@
 version: "3.1"
 
 stories:
-
+- story: calc
+  steps:
+  - intent: calculator
+  - action: calc
 - story: happy path
   steps:
   - intent: greet
@@ -56,11 +59,8 @@ stories:
   steps:
   - intent: average_time
   - action: algoBigTheta
+
 - story: ask time
   steps:
   - intent: ask_time
   - action: run_time
-- story: calc
-  steps:
-  - intent: calculator
-  - action: calc
