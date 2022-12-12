@@ -1,4 +1,4 @@
-# Virtual TA Project Team4
+# Virtual TA Project Team 4
 
 This project was made for CS4485 Senior Design Project so some of this readme will talk about the virtual machine. This project is creating a bot that can answer questions a TA could from the class Advanced Algorithms and Data Structure. This project incorporate:
 
