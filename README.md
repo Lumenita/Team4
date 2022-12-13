@@ -91,4 +91,4 @@ Node JS
 
 ### How to access
 1. Connect to UTD vpn or be inside UTD's network
-2. got to http://10.176.67.67/ or http://csa-4485-04.utdallas.edu/
+2. go to http://10.176.67.67/ or http://csa-4485-04.utdallas.edu/
